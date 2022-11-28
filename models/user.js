@@ -1,6 +1,5 @@
 const { Schema, model } = require('mongoose');
-// do i need this here too or just in thoughts?
-// const moment = require('moment');
+const User = model('User', UserSchema);
 
 const UserSchema = new Schema({
     username: {
@@ -39,7 +38,5 @@ const UserSchema = new Schema({
 UserSchema.virtual('friendCount').get(function () {
     return this.friends.length;
 });
-
-const User = model('User', UserSchema);
 
 module.exports = User;
