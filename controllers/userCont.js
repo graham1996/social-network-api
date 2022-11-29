@@ -103,4 +103,4 @@ const userCont = {
   }
 };
 
-module.exports = userCont
+module.exports = userCont;

@@ -2,7 +2,6 @@ const { Thought, User } = require('../models');
 
 const thoughtCont = {
 
-    //create thought
     addThought({
         body
     }, res) {
@@ -22,14 +21,14 @@ const thoughtCont = {
                     }
                 );
             })
-            .then(dbUsersData => {
-                if (!dbUsersData) {
+            .then(dbUserData => {
+                if (!dbUserData) {
                     res.status(404).json({
-                        message: 'No user found id.'
+                        message: 'No user found with this id!'
                     });
                     return;
                 }
-                res.json(dbUsersData)
+                res.json(dbUserData)
             })
             .catch(err => {
                 console.log(err);
@@ -50,7 +49,7 @@ const thoughtCont = {
         params
     }, res) {
         Thought.findOne({
-            _id: params.id
+            _id: params.thoughtId
         })
             .select('-__v')
             .sort({
@@ -59,7 +58,7 @@ const thoughtCont = {
             .then(dbThoughtData => {
                 if (!dbThoughtData) {
                     res.status(404).json({
-                        message: 'No thought found with id.'
+                        message: 'No thought found with this id!'
                     });
                     return;
                 }
@@ -125,7 +124,7 @@ const thoughtCont = {
             .then(dbUserData => {
                 if (!dbUserData) {
                     res.status(404).json({
-                        message: 'No thought found with this id!'
+                        message: 'No user found with this id!'
                     });
                     return;
                 }
